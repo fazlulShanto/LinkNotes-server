@@ -46,6 +46,7 @@ export const handleUserLoginService = async ({ email, password }) => {
             lastName: user.lastName,
             isAdmin: user.isAdmin || false,
             userId: user._id,
+            avatarUrl : user.avatarUrl
         };
         const token = genericUtils.signWithJWT(tokenObject);
         return {userData: tokenObject,token};

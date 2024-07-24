@@ -30,9 +30,9 @@ const userSchema = new mongoose.Schema(
             type: Boolean,
             default: false,
         },
-        avatar: {
+        avatarUrl: {
             type: String,
-            default: null,
+            default: 'http://defaultavatar.url',
         },
     },
     {
