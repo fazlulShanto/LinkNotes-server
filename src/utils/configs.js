@@ -1,6 +1,6 @@
 const dbModelNames = {
     user: "User",
-    note: "Notes",
+    note: "Note",
     admin: "Admin"
 }
 export const ageTime = 3 * 24 * 60 * 60 * 1000;

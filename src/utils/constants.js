@@ -1,6 +1,6 @@
 
 export default {
-    dummyData : [
+    dummyData: [
         {
             noteTitle: "Bookmarks",
             noteContent: {
@@ -15,91 +15,7 @@ export default {
                 value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, voluptate. Velit ipsa aut labore, reiciendis quae est pariatur accusamus neque similique necessitatibus. Dolor dolorum temporibus aut eius quidem assumenda delectus.",
             },
             type: "TEXT_NOTE",
-        },
-        {
-            noteTitle: "Text Note",
-            noteContent: {
-                value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, voluptate. Velit ipsa aut labore, reiciendis quae est pariatur accusamus neque similique necessitatibus. Dolor dolorum temporibus aut eius quidem assumenda delectus.",
-            },
-            type: "TEXT_NOTE",
-        },
-        {
-            noteTitle: "Text Note",
-            noteContent: {
-                value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, voluptate. Velit ipsa aut labore, reiciendis quae est pariatur accusamus neque similique necessitatibus. Dolor dolorum temporibus aut eius quidem assumenda delectus.",
-            },
-            type: "TEXT_NOTE",
-        },
-        {
-            noteTitle: "Text Note",
-            noteContent: {
-                value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, voluptate. Velit ipsa aut labore, reiciendis quae est pariatur accusamus neque similique necessitatibus. Dolor dolorum temporibus aut eius quidem assumenda delectus.",
-            },
-            type: "TEXT_NOTE",
-        },
-        {
-            noteTitle: "Text Note",
-            noteContent: {
-                value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, voluptate. Velit ipsa aut labore, reiciendis quae est pariatur accusamus neque similique necessitatibus. Dolor dolorum temporibus aut eius quidem assumenda delectus.",
-            },
-            type: "TEXT_NOTE",
-        },
-        {
-            noteTitle: "Text Note",
-            noteContent: {
-                value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, voluptate. Velit ipsa aut labore, reiciendis quae est pariatur accusamus neque similique necessitatibus. Dolor dolorum temporibus aut eius quidem assumenda delectus.",
-            },
-            type: "TEXT_NOTE",
-        },
-        {
-            noteTitle: "Text Note",
-            noteContent: {
-                value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, voluptate. Velit ipsa aut labore, reiciendis quae est pariatur accusamus neque similique necessitatibus. Dolor dolorum temporibus aut eius quidem assumenda delectus.",
-            },
-            type: "TEXT_NOTE",
-        },
-        {
-            noteTitle: "Text Note",
-            noteContent: {
-                value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, voluptate. Velit ipsa aut labore, reiciendis quae est pariatur accusamus neque similique necessitatibus. Dolor dolorum temporibus aut eius quidem assumenda delectus.",
-            },
-            type: "TEXT_NOTE",
-        },
-        {
-            noteTitle: "Text Note",
-            noteContent: {
-                value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, voluptate. Velit ipsa aut labore, reiciendis quae est pariatur accusamus neque similique necessitatibus. Dolor dolorum temporibus aut eius quidem assumenda delectus.",
-            },
-            type: "TEXT_NOTE",
-        },
-        {
-            noteTitle: "Text Note",
-            noteContent: {
-                value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, voluptate. Velit ipsa aut labore, reiciendis quae est pariatur accusamus neque similique necessitatibus. Dolor dolorum temporibus aut eius quidem assumenda delectus.",
-            },
-            type: "TEXT_NOTE",
-        },
-        {
-            noteTitle: "Text Note",
-            noteContent: {
-                value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, voluptate. Velit ipsa aut labore, reiciendis quae est pariatur accusamus neque similique necessitatibus. Dolor dolorum temporibus aut eius quidem assumenda delectus.",
-            },
-            type: "TEXT_NOTE",
-        },
-        {
-            noteTitle: "Text Note",
-            noteContent: {
-                value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, voluptate. Velit ipsa aut labore, reiciendis quae est pariatur accusamus neque similique necessitatibus. Dolor dolorum temporibus aut eius quidem assumenda delectus.",
-            },
-            type: "TEXT_NOTE",
-        },
-        {
-            noteTitle: "Text Note",
-            noteContent: {
-                value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, voluptate. Velit ipsa aut labore, reiciendis quae est pariatur accusamus neque similique necessitatibus. Dolor dolorum temporibus aut eius quidem assumenda delectus.",
-            },
-            type: "TEXT_NOTE",
-        },
+        }, 
         {
             noteTitle: "Todo List",
             noteContent: {
@@ -120,5 +36,90 @@ export default {
             },
             type: "CHECKBOX_LIST",
         },
+        {
+            noteTitle: "Text Note",
+            noteContent: {
+                value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, voluptate. Velit ipsa aut labore, reiciendis quae est pariatur accusamus neque similique necessitatibus. Dolor dolorum temporibus aut eius quidem assumenda delectus.",
+            },
+            type: "TEXT_NOTE",
+        },
+        {
+            noteTitle: "Text Note",
+            noteContent: {
+                value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, voluptate. Velit ipsa aut labore, reiciendis quae est pariatur accusamus neque similique necessitatibus. Dolor dolorum temporibus aut eius quidem assumenda delectus.",
+            },
+            type: "TEXT_NOTE",
+        },
+        {
+            noteTitle: "Text Note",
+            noteContent: {
+                value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, voluptate. Velit ipsa aut labore, reiciendis quae est pariatur accusamus neque similique necessitatibus. Dolor dolorum temporibus aut eius quidem assumenda delectus.",
+            },
+            type: "TEXT_NOTE",
+        },
+        {
+            noteTitle: "Text Note",
+            noteContent: {
+                value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, voluptate. Velit ipsa aut labore, reiciendis quae est pariatur accusamus neque similique necessitatibus. Dolor dolorum temporibus aut eius quidem assumenda delectus.",
+            },
+            type: "TEXT_NOTE",
+        },
+        {
+            noteTitle: "Text Note",
+            noteContent: {
+                value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, voluptate. Velit ipsa aut labore, reiciendis quae est pariatur accusamus neque similique necessitatibus. Dolor dolorum temporibus aut eius quidem assumenda delectus.",
+            },
+            type: "TEXT_NOTE",
+        },
+        {
+            noteTitle: "Text Note",
+            noteContent: {
+                value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, voluptate. Velit ipsa aut labore, reiciendis quae est pariatur accusamus neque similique necessitatibus. Dolor dolorum temporibus aut eius quidem assumenda delectus.",
+            },
+            type: "TEXT_NOTE",
+        },
+        {
+            noteTitle: "Text Note",
+            noteContent: {
+                value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, voluptate. Velit ipsa aut labore, reiciendis quae est pariatur accusamus neque similique necessitatibus. Dolor dolorum temporibus aut eius quidem assumenda delectus.",
+            },
+            type: "TEXT_NOTE",
+        },
+        {
+            noteTitle: "Text Note",
+            noteContent: {
+                value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, voluptate. Velit ipsa aut labore, reiciendis quae est pariatur accusamus neque similique necessitatibus. Dolor dolorum temporibus aut eius quidem assumenda delectus.",
+            },
+            type: "TEXT_NOTE",
+        },
+        {
+            noteTitle: "Text Note",
+            noteContent: {
+                value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, voluptate. Velit ipsa aut labore, reiciendis quae est pariatur accusamus neque similique necessitatibus. Dolor dolorum temporibus aut eius quidem assumenda delectus.",
+            },
+            type: "TEXT_NOTE",
+        },
+        {
+            noteTitle: "Text Note",
+            noteContent: {
+                value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, voluptate. Velit ipsa aut labore, reiciendis quae est pariatur accusamus neque similique necessitatibus. Dolor dolorum temporibus aut eius quidem assumenda delectus.",
+            },
+            type: "TEXT_NOTE",
+        },
+        {
+            noteTitle: "Text Note",
+            noteContent: {
+                value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, voluptate. Velit ipsa aut labore, reiciendis quae est pariatur accusamus neque similique necessitatibus. Dolor dolorum temporibus aut eius quidem assumenda delectus.",
+            },
+            type: "TEXT_NOTE",
+        },
+        {
+            noteTitle: "Text Note",
+            noteContent: {
+                value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, voluptate. Velit ipsa aut labore, reiciendis quae est pariatur accusamus neque similique necessitatibus. Dolor dolorum temporibus aut eius quidem assumenda delectus.",
+            },
+            type: "TEXT_NOTE",
+        },
+
     ]
 }

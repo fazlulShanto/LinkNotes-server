@@ -13,7 +13,6 @@ export default async function connectToMongoDB() {
         const res = await mongoose.connect(finalUrl,{
             dbName:dbName
         });
-
         console.log(`✅ Connected to MongoDB at =>"${res.connection.name}"`); 
     } catch (error) {
         console.log(err)

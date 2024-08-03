@@ -20,19 +20,18 @@ const userSchema = new mongoose.Schema(
             required: true,
             select : false
         },
-        pinned_note: {
-            type: 'ObjectId',
-            ref: "Notes",
-            default: null,
+        pinned_note: [{
+            type: mongoose.Schema.ObjectId,
+            ref: configs.dbModelNames.note,
             required:false,
-        },
+        }],
         isAdmin: {
             type: Boolean,
             default: false,
         },
         avatarUrl: {
             type: String,
-            default: 'http://defaultavatar.url',
+            default: '',
         },
     },
     {

@@ -1,12 +1,10 @@
 import {express,responseHandler,httpCodes} from '../../exports.js';
+import { handleCreateNewNote, handleGetAllNotes} from './controller.js';
+import {validators} from './utils.js'
 const notesRoutes = express.Router();
-notesRoutes.get("/", (req, res) => {
-    return responseHandler(
-        res,
-        {
-            message: "Hello from notes",
-        },
-        httpCodes.OK_200
-    );
-});
+
+notesRoutes.get("/",handleGetAllNotes);
+
+notesRoutes.post("/", validators.createNewNoteValidator, handleCreateNewNote);
+
 export default notesRoutes;
