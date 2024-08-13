@@ -15,7 +15,7 @@ const NoteContentSchema = new Schema({
 const NoteSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
-        ref: configs.dbModelNames.note,
+        ref: configs.dbModelNames.user,
         required: true
       },
     noteTitle: {
@@ -35,9 +35,13 @@ const NoteSchema = new Schema({
         type: [String],
         default: [],
         required: true
+    },
+    isPinned:{
+        type: Boolean,
+        default:false,
     }
 
-}, { timestamps: true });
+}, { timestamps : true });
 
 // Validation for different note types
 NoteSchema.pre('validate', function (next) {

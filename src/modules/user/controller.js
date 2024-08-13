@@ -18,6 +18,7 @@ export const handleUserLogin = async (req, res) => {
 
     return responseHandler(res, responseData, httpCodes.OK_200);
 };
+
 export const handleMeRoute = async (req, res) => {
     const user = req.userInfo;
     const responseData = {
