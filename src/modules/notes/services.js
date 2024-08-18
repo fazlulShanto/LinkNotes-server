@@ -70,3 +70,20 @@ export const toggleNotesPin = async ( noteId,status=false) => {
         return true;
     }
 };
+export const toggleSingleCheckboxItem = async ( noteId,itemId,status=false) => {
+    status = status === 'false' ? false : true;
+    try {
+        await NoteModel.findOneAndUpdate(
+            { _id: noteId, 'noteContent.value.id':itemId},
+            {
+              $set: {
+                'noteContent.value.$.isChecked': !status, 
+              }
+            },
+        );
+        return true;
+    } catch (error) {
+        console.error("Error toggling item:", new Error(error).message);
+        return true;
+    }
+};

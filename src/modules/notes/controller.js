@@ -1,6 +1,6 @@
 import expressAsyncHandler from "express-async-handler";
 import {express,responseHandler,httpCodes} from '../../exports.js';
-import { createNewNoteService,deleteNotes,findSingleUserPinnedNotes,getAllNotesService, toggleNotesPin } from "./services.js";
+import { createNewNoteService,deleteNotes,findSingleUserPinnedNotes,getAllNotesService, toggleNotesPin ,toggleSingleCheckboxItem} from "./services.js";
 
 export const handleCreateNewNote = expressAsyncHandler( async (req,res)=>{
     const data = req.body;
@@ -28,5 +28,10 @@ export const handleDeleteNotes = expressAsyncHandler( async (req,res)=>{
 export const handleNotePinToggle = expressAsyncHandler( async (req,res)=>{
     const {noteId,isPinned} = req.query;
     const result = await toggleNotesPin(noteId,isPinned);
+    return responseHandler(res,{result,from:'toggle'},httpCodes.OK_200);
+});
+export const handleCheckboxItemToggle = expressAsyncHandler( async (req,res)=>{
+    const {noteId,itemId,isChecked} = req.query;
+    const result = await toggleSingleCheckboxItem(noteId,itemId,isChecked);
     return responseHandler(res,{result,from:'toggle'},httpCodes.OK_200);
 });

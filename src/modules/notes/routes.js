@@ -4,7 +4,8 @@ import {
     handleDeleteNotes,
     handleGetAllNotes,
     getUserPinnedNote,
-    handleNotePinToggle
+    handleNotePinToggle,
+    handleCheckboxItemToggle
 } from "./controller.js";
 import { validators } from "./utils.js";
 const notesRoutes = express.Router();
@@ -17,8 +18,12 @@ notesRoutes.delete("/", handleDeleteNotes);
 
 notesRoutes.get("/pinned-notes", getUserPinnedNote);
 
-notesRoutes.get("/toggle-pin", handleNotePinToggle);
+notesRoutes.patch("/toggle-pin", handleNotePinToggle);
 
-
+notesRoutes.patch(
+    "/toggle-checkbox-item",
+    validators.toggleCheckboxItemValidator,
+    handleCheckboxItemToggle
+);
 
 export default notesRoutes;
