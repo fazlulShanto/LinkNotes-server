@@ -5,7 +5,8 @@ import {
     handleGetAllNotes,
     getUserPinnedNote,
     handleNotePinToggle,
-    handleCheckboxItemToggle
+    handleCheckboxItemToggle,
+    handleUPdateSingleNote
 } from "./controller.js";
 import { validators } from "./utils.js";
 const notesRoutes = express.Router();
@@ -15,6 +16,8 @@ notesRoutes.get("/", handleGetAllNotes);
 notesRoutes.post("/", validators.createNewNoteValidator, handleCreateNewNote);
 
 notesRoutes.delete("/", handleDeleteNotes);
+
+notesRoutes.put("/:noteId", handleUPdateSingleNote);
 
 notesRoutes.get("/pinned-notes", getUserPinnedNote);
 

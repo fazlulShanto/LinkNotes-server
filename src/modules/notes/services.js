@@ -73,17 +73,29 @@ export const toggleNotesPin = async ( noteId,status=false) => {
 export const toggleSingleCheckboxItem = async ( noteId,itemId,status=false) => {
     status = status === 'false' ? false : true;
     try {
-        await NoteModel.findOneAndUpdate(
+        const updated = await NoteModel.findOneAndUpdate(
             { _id: noteId, 'noteContent.value.id':itemId},
             {
               $set: {
                 'noteContent.value.$.isChecked': !status, 
               }
-            },
+            },{
+                new: true
+            }
         );
-        return true;
+        return updated;
     } catch (error) {
         console.error("Error toggling item:", new Error(error).message);
         return true;
     }
 };
+
+export const  editSingleNoteData = async (noteId, noteData={})=>{
+    try {
+        const result = await NoteModel.findByIdAndUpdate(noteId,noteData,{new : true});
+        return result;
+    } catch (error) {
+        throw new Error('Failed to update note with id',noteId);
+    }
+};
+
