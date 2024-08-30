@@ -1,4 +1,5 @@
 import { UserModel,genericUtils, httpCodes } from "../../exports.js";
+import { getRandomAvatarUrl } from "./utils.js";
 
 
 export const createNewUser = async ({
@@ -8,11 +9,13 @@ export const createNewUser = async ({
     password,
 }) => {
     const hashPassword = genericUtils.hashPassword(password);
+    const avatarUrl = await getRandomAvatarUrl();
     try {
         const user = new UserModel({
             firstName,
             lastName,
             email,
+            avatarUrl:avatarUrl,
             password: hashPassword,
         });
         await user.save();

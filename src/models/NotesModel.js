@@ -69,6 +69,62 @@ NoteSchema.pre('validate', function (next) {
 
 // noteSchema.methods = {
 // };
+  
+  // Helper function to escape special characters in regex
+  function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+export const _filterNotes =  (filterObject,userId) => {
+    let query = {
+        user: userId
+    };
+    // Example for type field
+    if (filterObject.type) {
+        query.type = filterObject.type;
+    }
+
+    if (filterObject.title) {
+      switch (filterObject.titleCondition) {
+        case 'contains':
+          query.noteTitle = { $regex: new RegExp(escapeRegExp(filterObject.title), 'i') };
+          break;
+        case 'not-contains':
+          query.noteTitle = { $not: { $regex: new RegExp(escapeRegExp(filterObject.title), 'i') } };
+          break;
+        case 'is':
+          query.noteTitle = filterObject.title;
+          break;
+          default:
+          query.noteTitle = { $regex: new RegExp(escapeRegExp(filterObject.title), 'i') };
+      }
+    }
+
+    if (filterObject.tag) {
+        switch (filterObject.tagCondition) {
+          case 'contains':
+            query.tags = { $elemMatch: { $regex: new RegExp(escapeRegExp(filterObject.tag), 'i') } };
+            break;
+          case 'not-contains':
+            query.tags = { $not: { $elemMatch: { $regex: new RegExp(escapeRegExp(filterObject.tag), 'i') } } };
+            break;
+          case 'is':
+            query.tags = filterObject.tag;
+            break;
+          default:
+            // If no method is specified, default to 'contains'
+            query.tags = { $elemMatch: { $regex: new RegExp(escapeRegExp(filterObject.tag), 'i') } };
+        }
+      }
+  
+    // Example for isPinned field
+    if (filterObject.isPinned ) {
+      query.isPinned = filterObject.isPinned;
+    }
+  
+   return query;
+  };
+
 
 const NoteModel = mongoose.model(configs.dbModelNames.note, NoteSchema);
 export default NoteModel;

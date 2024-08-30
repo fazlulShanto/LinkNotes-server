@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import NoteModel from "../../models/NotesModel.js";
+import NoteModel, { _filterNotes } from "../../models/NotesModel.js";
 import { UserModel } from "../../exports.js";
 
 export const createNewNoteService = async ({
@@ -99,3 +99,14 @@ export const  editSingleNoteData = async (noteId, noteData={})=>{
     }
 };
 
+export const filterNotes = async (filterObject,userId)=>{
+    const filterQuery = _filterNotes(filterObject,userId);
+    try {
+        const result = await NoteModel.find(filterQuery);
+        return {notes: result,filterQuery};
+    } catch (error) {
+        return {
+            filterQuery
+        }
+    }
+}

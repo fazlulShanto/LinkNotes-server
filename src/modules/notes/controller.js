@@ -1,6 +1,6 @@
 import expressAsyncHandler from "express-async-handler";
 import {express,responseHandler,httpCodes} from '../../exports.js';
-import { createNewNoteService,deleteNotes,findSingleUserPinnedNotes,getAllNotesService, toggleNotesPin ,toggleSingleCheckboxItem,editSingleNoteData} from "./services.js";
+import { createNewNoteService,deleteNotes,findSingleUserPinnedNotes,getAllNotesService, toggleNotesPin ,toggleSingleCheckboxItem,editSingleNoteData, filterNotes} from "./services.js";
 
 export const handleCreateNewNote = expressAsyncHandler( async (req,res)=>{
     const data = req.body;
@@ -28,18 +28,33 @@ export const handleDeleteNotes = expressAsyncHandler( async (req,res)=>{
 export const handleNotePinToggle = expressAsyncHandler( async (req,res)=>{
     const {noteId,isPinned} = req.query;
     const result = await toggleNotesPin(noteId,isPinned);
-    return responseHandler(res,{result,from:'toggle'},httpCodes.OK_200);
+    return responseHandler(res,{result,from:'toggle pin'},httpCodes.OK_200);
 });
 
 export const handleCheckboxItemToggle = expressAsyncHandler( async (req,res)=>{
     const {noteId,itemId,isChecked} = req.query;
     const result = await toggleSingleCheckboxItem(noteId,itemId,isChecked);
-    return responseHandler(res,{result,from:'toggle'},httpCodes.OK_200);
+    return responseHandler(res,{result,from:'toggle checkbox'},httpCodes.OK_200);
 });
 
 export const handleUPdateSingleNote =  expressAsyncHandler( async (req,res)=>{
     const {noteId} = req.params;
     const {data} = req.body;
     const result = await editSingleNoteData(noteId,data);
-    return responseHandler(res,{result,from:'toggle'},httpCodes.OK_200);
+    return responseHandler(res,{result,from:'update note'},httpCodes.OK_200);
+});
+
+export const handleNoteFilterRoutes = expressAsyncHandler( async (req,res)=>{
+    const {params,query} = req;
+    const filterObject = {
+        type: query?.noteType ?? '',
+        title : query?.titleQuery ?? '',
+        titleCondition : query?.titleCondition ?? '',
+        tagCondition: query?.tagCondition ?? '',
+        tag: query?.tagQuery ?? '',
+        isPinned : query?.isPinned ?? ''
+    };
+    const result = await filterNotes(filterObject,req.userInfo.userId);
+
+    return responseHandler(res,{...result,from:'filter'},httpCodes.OK_200);
 });

@@ -15,3 +15,16 @@ export const loginRequestValidator = [
     body("password").not().isEmpty().withMessage("password is required"),
     schemaValidatorMiddleware
 ];
+
+export const getRandomAvatarUrl = async () => {
+    try {
+        const response = await fetch("https://randomuser.me/api/?inc=name");
+        const data = await response.json();
+        const seedId = data?.info?.seed ?? "555dbf94f08a7e58";
+        const apiUrl = `https://robohash.org/${seedId}?set=set4&bgset=&size=120x120`;
+        return apiUrl;
+    } catch (error) {
+        console.log("error", error);
+        return `https://robohash.org/aece660d698d1035?set=set4&bgset=&size=120x120`;
+    }
+};
