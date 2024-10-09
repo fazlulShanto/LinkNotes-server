@@ -1,8 +1,16 @@
-import { errorResponseHandler,genericUtils,httpCodes } from "../exports.js";
+import { errorResponseHandler, genericUtils, httpCodes } from "../exports.js";
 export const authMiddleware = (req, res, next) => {
-    const token = req.cookies?.token;
-    if(!token){
-        return errorResponseHandler(res,"unauthorized!",httpCodes.UNAUTHORIZED_401);
+    let token = req.cookies?.token;
+    if (!token) {
+        token = req.headers?.token;
+    }
+
+    if (!token) {
+        return errorResponseHandler(
+            res,
+            "unauthorized!",
+            httpCodes.UNAUTHORIZED_401
+        );
     }
     try {
         const decodedToken = genericUtils.decodeJWT(token);
@@ -20,7 +28,11 @@ export const authMiddleware = (req, res, next) => {
         req.userInfo = decodedToken;
         next();
     } catch (error) {
-        return errorResponseHandler(res,"unauthorized!",httpCodes.UNAUTHORIZED_401);
+        return errorResponseHandler(
+            res,
+            "unauthorized!",
+            httpCodes.UNAUTHORIZED_401
+        );
     }
 };
 
