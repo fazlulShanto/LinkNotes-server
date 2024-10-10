@@ -24,8 +24,7 @@ export const handleUserLogin = async (req, res) => {
         message: `User logged in with email ${result.email}`,
         ...result,
     };
-    res.cookie("token", result.token, cookieOptions);
-
+    // res.cookie("token", result.token, cookieOptions);
     return responseHandler(res, responseData, httpCodes.OK_200);
 };
 

@@ -1,10 +1,7 @@
 import { errorResponseHandler, genericUtils, httpCodes } from "../exports.js";
 export const authMiddleware = (req, res, next) => {
-    let token = req.cookies?.token;
-    if (!token) {
-        token = req.headers?.token;
-    }
-
+    let token =  req.headers?.token;
+    
     if (!token) {
         return errorResponseHandler(
             res,
