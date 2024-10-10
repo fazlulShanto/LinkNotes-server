@@ -1,23 +1,64 @@
 import { Router } from "express";
-import { httpCodes, responseHandler ,constants} from "../exports.js";
+import {
+    httpCodes,
+    responseHandler,
+    constants,
+    genericUtils,
+} from "../exports.js";
 import notesRoutes from "../modules/notes/routes.js";
 import adminRoutes from "../modules/admin/routes.js";
 import userRoutes from "../modules/user/routes.js";
 import authMiddleware from "../middlewares/authMiddleware.js";
+import { createUploadthing, createRouteHandler } from "uploadthing/express";
+import { UploadThingError } from "uploadthing/server";
+
+const uploadthing = createUploadthing({
+    errorFormatter: (err) => {
+        console.log(err);
+        return { message: "Something went wrong, please try again!" };
+    },
+});
 
 const appRoutes = new Router();
 
-
-appRoutes.get("/dummy-data", (req, res) => {
-    return responseHandler(
-        res,
-        {
-            dummyData: constants.dummyData,
-            message : "Server is up and running",
+export const uploadthingRouter = {
+    imageUploader: uploadthing({
+        image: {
+            maxFileSize: "512KB",
+            maxFileCount: 1,
+            acl: "public-read",
         },
-        httpCodes.OK_200
-    );
-});
+    })
+        .middleware(async ({ req, res, event }) => {
+            let token = req.cookies?.token;
+            if (!token) {
+                token = req.headers?.token;
+            }
+            if (!token) {
+                throw new UploadThingError("unauthorized!");
+            }
+            const user = genericUtils.decodeJWT(token);
+            if (!user)
+                throw new UploadThingError(
+                    "You must be logged in to upload a profile picture"
+                );
+            return { userId: user?.userId };
+        })
+        .onUploadComplete((e) => {
+            console.log("uploaded Files🔥", e);
+        }),
+};
+
+appRoutes.use(
+    "/uploadthing",
+    createRouteHandler({
+        router: uploadthingRouter,
+        config: {
+            logLevel: "Error",
+        },
+    })
+);
+
 appRoutes.get("/health-check", (req, res) => {
     return responseHandler(
         res,
@@ -29,7 +70,9 @@ appRoutes.get("/health-check", (req, res) => {
 });
 
 appRoutes.use("/user", userRoutes);
+
 appRoutes.use(authMiddleware); //🛑 protect routes starts
+
 appRoutes.use("/notes", notesRoutes);
 
 appRoutes.use("/admin", adminRoutes);

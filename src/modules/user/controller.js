@@ -1,5 +1,15 @@
-import { httpCodes, responseHandler, configs, genericUtils} from "../../exports.js";
-import { createNewUser, handleUserLoginService } from "./services.js";
+import {
+    httpCodes,
+    responseHandler,
+    configs,
+    genericUtils,
+} from "../../exports.js";
+import {
+    createNewUser,
+    findUserData,
+    handleUserAvatarUpldateService,
+    handleUserLoginService,
+} from "./services.js";
 const { cookieOptions } = configs;
 export const userApiHealthCheck = async (req, res) => {
     return res.status(httpCodes.OK_200).json({
@@ -14,13 +24,17 @@ export const handleUserLogin = async (req, res) => {
         message: `User logged in with email ${result.email}`,
         ...result,
     };
-    res.cookie('token', result.token, cookieOptions );
+    res.cookie("token", result.token, cookieOptions);
 
     return responseHandler(res, responseData, httpCodes.OK_200);
 };
 
 export const handleMeRoute = async (req, res) => {
-    const user = req.userInfo;
+    let email = req?.userInfo?.email;
+    if (!email) {
+        throw new Error("Invalid request.");
+    }
+    const user = await findUserData({ email });
     const responseData = {
         message: `User logged in with email ${user.email}`,
         userData: user,
@@ -51,9 +65,26 @@ export const handleForgotPassword = (req, res) => {
     });
 };
 
-
-export const handleLogOut = async (req,res)=>{
+export const handleLogOut = async (req, res) => {
     const cookies = req.cookies;
-    Object.keys(cookies).map( v => res.clearCookie(v));
-    responseHandler(res,{},httpCodes.OK_200)
-}
+    Object.keys(cookies).map((v) => res.clearCookie(v));
+    responseHandler(res, {}, httpCodes.OK_200);
+};
+
+export const handleUpdateProfile = async (req, res) => {
+    const body = req.body;
+    const userEmail = req.userInfo.email;
+    const avatarUrl = body?.avatarUrl;
+    if (!avatarUrl) {
+        throw new Error("no avatar url found");
+    }
+    const userInfo = await handleUserAvatarUpldateService({
+        email: userEmail,
+        avatarUrl,
+    });
+    responseHandler(
+        res,
+        { userInfo, mesage: "User avatar updated!", url: avatarUrl },
+        httpCodes.OK_200
+    );
+};
